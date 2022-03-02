@@ -6,6 +6,7 @@ public class TestJump : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     [SerializeField] private float _jumpForce;
+    [SerializeField] private float _highestPoint;
 
     private void Awake()
     {
@@ -17,9 +18,14 @@ public class TestJump : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            Debug.Log("Jumped");
+            Debug.Log(Time.deltaTime);
             _rigidbody.AddForce(transform.up * _jumpForce, ForceMode.VelocityChange);
 
+        }
+
+        if(transform.position.y > _highestPoint)
+        {
+            _highestPoint = transform.position.y;
         }
     }
 }
